@@ -1,0 +1,186 @@
+// Paddding
+$pt: pt !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$pt}-#{$x1} {
+    padding-top: 0px + $x1 !important;
+  }
+}
+
+$pb: pb !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$pb}-#{$x1} {
+    padding-bottom: 0px + $x1 !important;
+  }
+}
+
+$pl: pl !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$pl}-#{$x1} {
+    padding-left: 0px + $x1 !important;
+  }
+}
+
+$pr: pr !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$pr}-#{$x1} {
+    padding-right: 0px + $x1 !important;
+  }
+}
+
+$px: px !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$px}-#{$x1} {
+    padding-left: 0px + $x1 !important;
+    padding-right:0px + $x1 !important;
+  }
+}
+
+$py: py !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$py}-#{$x1} {
+    padding-top: 0px + $x1 !important;
+    padding-bottom: 0px + $x1 !important;
+  }
+}
+
+
+// Margin
+$mt: mt !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$mt}-#{$x1} {
+    margin-top: 0px + $x1 !important;
+  }
+}
+
+$mb: mb !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$mb}-#{$x1} {
+    margin-bottom: 0px + $x1 !important;
+  }
+}
+
+$ml: ml !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$ml}-#{$x1} {
+    margin-left: 0px + $x1 !important;
+  }
+}
+
+$mr: mr !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$mr}-#{$x1} {
+    margin-right: 0px + $x1 !important;
+  }
+}
+
+$mx: mx !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$mx}-#{$x1} {
+    margin-left: 0px + $x1 !important;
+    margin-right:0px + $x1 !important;
+  }
+}
+
+$my: my !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$my}-#{$x1} {
+    margin-top: 0px + $x1 !important;
+    margin-bottom: 0px + $x1 !important;
+  }
+}
+
+
+
+//Font size
+
+$font-size: font-size !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$font-size}-#{$x1} {
+    font-size: 0px + $x1 !important;
+  }
+}
+
+
+// width
+
+$w: w !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$w}-#{$x1} {
+    width: 0px + $x1 !important;
+  }
+}
+
+// height
+
+$h: h !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$h}-#{$x1} {
+    height: 0px + $x1 !important;
+  }
+}
+
+// width percentage
+$w: w !default;
+$p: p !default;
+$x1: 0;
+@while $x1 < 102 {
+  $x1: $x1 + 2;
+  .#{$w}-#{$x1}-#{$p} {
+    width: 0% + $x1 !important;
+  }
+}
+
+// height percentage
+$h: h !default;
+$p: p !default;
+$x1: 0;
+@while $x1 < 102 {
+  $x1: $x1 + 2;
+  .#{$h}-#{$x1}-#{$p} {
+    height: 0% + $x1 !important;
+  }
+}
+
+
+// border radius
+
+$border-radius: border-radius !default;
+$x1: 0;
+@while $x1 < 800 {
+  $x1: $x1 + 2;
+  .#{$border-radius}-#{$x1} {
+    border-radius: 0px + $x1 !important;
+  }
+}
+
+

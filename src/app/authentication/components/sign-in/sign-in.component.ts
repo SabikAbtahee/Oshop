@@ -11,7 +11,7 @@ export class SignInComponent implements OnInit {
   constructor(private authenticationservice:AuthenticationService) { }
 
   ngOnInit() {
-    this.authenticationservice.signin();
+    // this.authenticationservice.signin();
   }
 
 }

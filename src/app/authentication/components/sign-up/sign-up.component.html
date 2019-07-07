@@ -1,0 +1,6 @@
+<form [formGroup]="signupform" (ngSubmit)='onSubmit()'>
+  <input type="email" formControlName="email">
+  <input type="password" formControlName="password">
+<button type="submit" [disabled]='!signupform.valid'>Submit</button>
+
+</form>

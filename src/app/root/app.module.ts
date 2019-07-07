@@ -6,17 +6,26 @@ import { AppComponent } from './root-default/root-default.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from '../shared/shared.module';
 import { ConfigModule } from '../config/config.module';
-
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import { environment } from '../../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    ConfigModule
+    ConfigModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

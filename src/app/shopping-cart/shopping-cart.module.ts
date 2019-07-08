@@ -5,12 +5,18 @@ import { RouterModule, Route, Routes } from '@angular/router';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { AuthguardService } from '../core/security-service/authguard.service';
 
 
 const routes:Routes=[
   {
     path:'',
     component:ShoppingCartDefaultComponent
+  },
+  {
+    path:'order',
+    component:OrderSuccessComponent,
+
   }
 ]
 

@@ -1,0 +1,45 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+    <mat-toolbar fxLayout="row" fxLayoutAlign="center center">{{title}}</mat-toolbar>
+
+    <mat-nav-list>
+      <div *ngFor="let content of sidebar">
+        <a mat-list-item (click)="route(content.url)" class="cursor-pointer px-24 font-size-16">{{content.name}}</a>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+
+    <mat-toolbar color="warn" class="h-56">
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+      <div>
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+      </div>
+      <div class='pt-12 cursor-pointer'>
+        <mat-icon (click)='route(home)' class='cursor-pointer'>bubble_chart</mat-icon>
+
+      </div>
+      
+      <div>
+        <button mat-button [matMenuTriggerFor]="menu" class="font-size-16">{{Username}}</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item >
+            <div (click)="route(menuItems.profile.url)">{{menuItems.profile.name}}</div>
+          </button>
+          <button mat-menu-item >
+              <div (click)="logout()">{{menuItems.logout.name}}</div>
+            </button>
+        </mat-menu>
+      </div>
+    </div>
+
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

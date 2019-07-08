@@ -1,14 +1,31 @@
 export const defaultConst = {
-	navbar: [
+	sidebar: [
 		{
 			name: 'Shopping Cart',
 			url: 'shopping-cart'
-		}
-	],
-	menu: [
+		},
 		{
-			name: 'Logout',
-			url: 'authentication/sign-out'
+			name:'Product',
+			url:'product'
+		},
+		{
+			name:'Enquiry',
+			url:'enquiry'
+		},
+		
+	],
+	menu: {
+		profile:{
+			name:'Profile',
+			url:'profile'
+		},
+		logout:{
+			name:'Logout',
+			url:'sign-in'
 		}
-	]
+	},
+	siteName:{
+		name:'Windmart',
+		url:'https://oshop-e9657.firebaseapp.com/'
+	}
 };

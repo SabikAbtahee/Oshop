@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SignOutComponent } from './sign-out.component';
+import { EnquiryDefaultComponent } from './enquiry-default.component';
 
-describe('SignOutComponent', () => {
-  let component: SignOutComponent;
-  let fixture: ComponentFixture<SignOutComponent>;
+describe('EnquiryDefaultComponent', () => {
+  let component: EnquiryDefaultComponent;
+  let fixture: ComponentFixture<EnquiryDefaultComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignOutComponent ]
+      declarations: [ EnquiryDefaultComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SignOutComponent);
+    fixture = TestBed.createComponent(EnquiryDefaultComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

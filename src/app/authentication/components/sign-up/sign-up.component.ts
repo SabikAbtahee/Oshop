@@ -12,12 +12,12 @@ import { Roles } from '../../../config/enums/default.enum';
 export class SignUpComponent implements OnInit {
 	signupform: FormGroup;
 	userInformation: UserInformation;
-	roles = Object.keys(Roles);
-
+	roles = Roles;
 	constructor(private authenticationService: AuthenticationService, private fb: FormBuilder) {}
 
 	ngOnInit() {
 		this.makeSignUpForm();
+		// this.authenticationService.signOut();
 	}
 
 	makeSignUpForm() {
@@ -49,4 +49,5 @@ export class SignUpComponent implements OnInit {
 			console.log(res);
 		});
 	}
+	
 }

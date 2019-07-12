@@ -3,18 +3,54 @@
 @import './styles/fonts.scss';
 html,
 body {
-	height: 100%;
+	height: 100% !important;
+	// min-height: 100% !important;
 }
 body {
 	margin: 0;
 	font-family: 'Varela Round', "Helvetica Neue", sans-serif;
 }
-.mat-menu-content {
-	padding: 0px !important;
-}
-.Varela-round-regular {
-	font-family: 'Varela Round' !important;
-}
+
+
+
+
+// Theming and typography
 @import '~@angular/material/theming';
 $custom-typography: mat-typography-config($font-family: 'DIN-Regular');
 @include mat-core($custom-typography);
+
+
+
+//  Customizing input selector mat elements in all places for maintaining consistency
+.mat-menu-content {
+	padding: 0px !important;
+}
+.mat-form-field-wrapper{
+	padding-bottom:16px !important;
+	margin-top:4px !important;
+	margin-bottom: 4px !important;
+}
+.mat-icon-for-input{
+	padding-bottom:16px !important;
+	margin-top:4px !important;
+	margin-bottom: 4px !important;
+}
+.mat-form-field{
+	width: 100%;
+}
+
+.mat-card{
+	padding:0px;
+}
+.mat-input-element{
+	height: 18px !important;
+}
+.mat-error{
+	font-size: 12px !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}

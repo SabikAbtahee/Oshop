@@ -4,6 +4,7 @@ import { Place } from './place.interface';
 export interface UserInformation {
 	password: string;
 	email: string;
+	displayName?:string;
 	metaData?:CustomerUserInformation;
 
 }

@@ -10,6 +10,6 @@ export class AnonymousComponent implements OnInit {
 	constructor(private aut: AuthenticationService) {}
 
 	ngOnInit() {
-		console.log(this.aut.getCurrentUser());
+		// console.log(this.aut.getCurrentUser());
 	}
 }

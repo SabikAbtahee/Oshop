@@ -57,4 +57,15 @@ export class AuthenticationService {
 	getCurrentUser(){
 		return this.angularfireauth.auth.currentUser;
 	}
+
+	sendPasswordResetEmail(user:UserInformation):Observable<any>{
+		return new Observable(observer=>{
+			this.angularfireauth.auth.sendPasswordResetEmail(user.email).then(acc=>{
+				observer.next(acc);
+			}).catch(err=>{
+				observer.next(err);
+			});
+		});
+
+	}
 }

@@ -11,7 +11,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$Oshop-primary: mat-palette($primary-oshop,500,700,900 );
+$Oshop-primary: mat-palette($primary-oshop,500,100,50 );
 $Oshop-accent: mat-palette($accent-oshop,100,200,300);
 
 // The warn palette is optional (defaults to red).

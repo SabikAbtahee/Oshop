@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 	title: string;
 	sidebar;
 	Username: string;
-  menuItems;
+	menuItems;
 
 	constructor(
 		private breakpointObserver: BreakpointObserver,
@@ -33,16 +33,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.initiateVariables();
-    this.setUsername();
-		console.log(this.aut.getCurrentUser());
-
-    
+		this.setUsername();
+		// console.log(this.aut.getCurrentUser());
 	}
 
 	initiateVariables() {
 		this.title = defaultConst.siteName.name;
 		this.sidebar = defaultConst.sidebar;
-    this.menuItems=defaultConst.menu;
+		this.menuItems = defaultConst.menu;
 	}
 
 	setUsername() {
@@ -51,10 +49,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
 				this.getUserName(res).pipe(first()).subscribe((res) => {
 					this.Username = res;
 				});
-      }
-      else{
-        this.Username = Roles.Anonymous;
-      }
+			} else {
+				this.Username = Roles.Anonymous;
+			}
 		});
 	}
 
@@ -62,24 +59,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
 		let personInfo: CustomerUserInformation;
 
 		return new Observable((observer) => {
-			this.corequery
-				.getSingleData(Entities.Person, uid)
-				.pipe(first())
-				.subscribe((res) => {
-					personInfo = res;
-					observer.next(personInfo && personInfo.name ? personInfo.name : null);
-				});
+			this.corequery.getSingleData(Entities.Person, uid).pipe(first()).subscribe((res) => {
+				personInfo = res;
+				observer.next(personInfo && personInfo.name ? personInfo.name : null);
+			});
 		});
 	}
 
 	route(url) {
 		this.router.navigateByUrl(url);
-  }
-  
-  logout(){
-    this.aut.signOut();
-  }
-
-	ngOnDestroy() {
 	}
+
+	logout() {
+		this.aut.signOut();
+	}
+
+	ngOnDestroy() {}
 }

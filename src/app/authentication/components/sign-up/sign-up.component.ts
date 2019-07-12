@@ -3,7 +3,9 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { UserInformation, CustomerUserInformation } from '../../../config/interfaces/user.interface';
 import { first } from 'rxjs/operators';
-import { Roles } from '../../../config/enums/default.enum';
+import { Roles, RolesView } from '../../../config/enums/default.enum';
+import { Router } from '@angular/router';
+import { defaultConst, urlPaths } from '../../../config/constants/defaultConstants';
 @Component({
 	selector: 'app-sign-up',
 	templateUrl: './sign-up.component.html',
@@ -12,8 +14,9 @@ import { Roles } from '../../../config/enums/default.enum';
 export class SignUpComponent implements OnInit {
 	signupform: FormGroup;
 	userInformation: UserInformation;
-	roles = Roles;
-	constructor(private authenticationService: AuthenticationService, private fb: FormBuilder) {}
+	roles = RolesView;
+	defaultCountryOfPhoneNumber = defaultConst.defaultPhonenumberCode;
+	constructor(private authenticationService: AuthenticationService, private fb: FormBuilder,private router:Router) {}
 
 	ngOnInit() {
 		this.makeSignUpForm();
@@ -26,7 +29,9 @@ export class SignUpComponent implements OnInit {
 			phoneNumber: [ '' ],
 			email: [ '', Validators.required ],
 			password: [ '', Validators.required ],
-			role: [ '' ]
+			role: [ '' ],
+			homeAddress:[''],
+			shopAddress:['']
 		});
 	}
 
@@ -34,11 +39,16 @@ export class SignUpComponent implements OnInit {
 		this.userInformation = {
 			email: this.signupform.value.email,
 			password: this.signupform.value.password,
+			displayName:this.signupform.value.name,
 			metaData: {
 				name: this.signupform.value.name,
 				email: this.signupform.value.email,
 				role: [ ...this.signupform.value.role, Roles.Anonymous ],
-				phoneNumber: this.signupform.value.phoneNumber
+				phoneNumber: this.signupform.value.phoneNumber,
+				homeAddress:this.signupform.value.homeAddress,
+				shopAddress:this.signupform.value.shopAddress,
+				enquiryLimit: defaultConst.defaultEnquiryLimit,
+				ratings	:defaultConst.defaultRatings,
 			}
 		};
 		this.registerUser(this.userInformation);
@@ -46,8 +56,11 @@ export class SignUpComponent implements OnInit {
 
 	registerUser(user: UserInformation) {
 		this.authenticationService.signUp(user).pipe(first()).subscribe((res) => {
-			console.log(res);
+			// console.log(res);
 		});
 	}
-	
+
+	routeToSignin(){
+		this.router.navigate([urlPaths.Authentication.Signin.url]);
+	}
 }

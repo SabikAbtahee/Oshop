@@ -5,6 +5,11 @@ export enum Roles{
     Anonymous='Anonymous'
 }
 
+export enum RolesView{
+    Customer='Customer',
+    Supplier='Supplier'
+}
+
 export enum ProductStatus{
     InStock='InStock',
     SoldOut='SoldOut',

@@ -7,12 +7,14 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MatCardModule, MatFormFieldModule, MatInputModule, MatDividerModule, MatProgressBarModule } from '@angular/material';
+import { MatCardModule, MatFormFieldModule, MatInputModule, MatDividerModule, MatProgressBarModule, MatSnackBarModule } from '@angular/material';
 import { InternationalPhoneNumberModule } from 'ngx-international-phone-number';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { SharedService } from './services/shared.service';
 @NgModule({
-  declarations: [],
+  declarations: [SnackbarComponent],
   imports: [
     MatToolbarModule,
     MatIconModule,
@@ -30,7 +32,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     NgxIntlTelInputModule,
     AngularFontAwesomeModule,
     MatDividerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSnackBarModule
   ],
   exports:[
     MatToolbarModule,
@@ -48,7 +51,10 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     NgxIntlTelInputModule,
     AngularFontAwesomeModule,
     MatDividerModule,
-    MatProgressBarModule
-  ]
+    MatProgressBarModule,
+    MatSnackBarModule
+  ],
+  providers:[SharedService],
+  entryComponents:[SnackbarComponent]
 })
 export class SharedModule { }

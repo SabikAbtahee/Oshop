@@ -1,7 +1,9 @@
 import { FormControl } from '@angular/forms';
-import { signinErrorCode } from '../constants/defaultConstants';
+import { signinErrorCode, recoverAccountCode, signupErrorCodes } from '../constants/defaultConstants';
 
 export class ValidationErrorMessages {
+
+	// Sign in page
 	emailMessage(control) {
 		return control.hasError('required')
 			? 'You must enter an Email address'
@@ -27,5 +29,30 @@ export class ValidationErrorMessages {
 			: control.hasError(signinErrorCode['Wrong password'].code)
 				? signinErrorCode['Wrong password'].message
 				: null;
+	}
+
+	// Account recovery
+	resetPasswordMessage(control) {
+		return control.hasError(recoverAccountCode['Invalid Email'].code)
+			? recoverAccountCode['Invalid Email'].message
+			: control.hasError(recoverAccountCode['User not found'].code)
+				? recoverAccountCode['User not found'].message
+				: null;
+	}
+
+	// Sign up page
+	authMessageForSignUpEmail(control) {
+		return control.hasError(signupErrorCodes['Email Already in use'].code)
+			? signupErrorCodes['Email Already in use'].message
+			: control.hasError(signupErrorCodes['Invalid Email'].code)
+				? signupErrorCodes['Invalid Email'].message
+				: control.hasError(signupErrorCodes['Invalid Operation'].code)
+					? signupErrorCodes['Invalid Operation'].message
+					: null;
+	}
+	authMessageForSignupPassword(control) {
+		return control.hasError(signupErrorCodes['Weak Password'].code)
+			? signupErrorCodes['Weak Password'].message
+			: null;
 	}
 }

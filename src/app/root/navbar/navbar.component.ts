@@ -8,6 +8,7 @@ import { defaultConst } from '../../config/constants/defaultConstants';
 import { QueryDatabaseService } from '../../core/database-service/query-database.service';
 import { Entities, Roles } from '../../config/enums/default.enum';
 import { CustomerUserInformation } from '../../config/interfaces/user.interface';
+import { SharedService } from '../../shared/services/shared.service';
 
 @Component({
 	selector: 'app-navbar',
@@ -28,7 +29,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 		private breakpointObserver: BreakpointObserver,
 		private aut: AuthenticationService,
 		private router: Router,
-		private corequery: QueryDatabaseService
+		private corequery: QueryDatabaseService,
+		private sharedService: SharedService
 	) {}
 
 	ngOnInit() {
@@ -66,12 +68,25 @@ export class NavbarComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	route(url) {
-		this.router.navigateByUrl(url);
-	}
+	
 
 	logout() {
 		this.aut.signOut();
+		this.showLogoutSnackbar();
+
+	}
+
+	showLogoutSnackbar(){
+		this.sharedService.openSnackBar({
+			data:{
+				message:'Logged out successfully',
+				isAccepted:true
+			},
+			duration:3,
+			horizontalPosition:'right',
+			verticalPosition:'top',
+			panelClass:['default-snackbar']
+		})
 	}
 
 	ngOnDestroy() {}

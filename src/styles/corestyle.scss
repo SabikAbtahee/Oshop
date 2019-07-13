@@ -272,6 +272,12 @@ $x1: 0;
 .third-text-color {
 	color: $third-color !important;
 }
+.accepted-color{
+	color:$accepted-color !important;
+}
+.rejected-color{
+	color:$rejected-color !important;
+}
 
 .header-1{
 	font-size:40px;
@@ -305,6 +311,8 @@ international-phone-number {
 		border: 1px solid #ced4da;
 		border-radius: 6px;
 		height: 100%;
+		max-width: 200px !important;
+		min-width: 200px !important;
 	}
 	.input-group .input-group-addon .dropdown {
 		height: 100%;
@@ -324,4 +332,24 @@ international-phone-number {
 	padding-left: 8px;
 	font-size:14px;
 	}
+}
+
+
+// mat snackbar 
+.recovery-snackbar{
+	text-align: center !important;
+	background: white !important;
+	min-width: 250px !important;
+	min-height:64px !important;
+	font-size: 16px !important;
+    color: black !important;
+}
+
+.default-snackbar{
+	text-align: center !important;
+	background: white !important;
+	min-width: 250px !important;
+	min-height:64px !important;
+	font-size: 16px !important;
+    color: black !important;
 }

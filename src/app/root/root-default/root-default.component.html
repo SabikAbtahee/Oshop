@@ -1,24 +1,2 @@
-<!-- <mat-toolbar color="warn" class="h-56">
-  <div>
-    <mat-icon (click)='route(home)' class='cursor-pointer'>bubble_chart</mat-icon>
 
-  </div>
-  <div *ngFor="let content of toolbar">
-    <div (click)="route(content.url)" class="cursor-pointer px-24 font-size-16">
-      <span>{{content.name}}</span>
-    </div>
-  </div>
-  <div>
-    <button mat-button [matMenuTriggerFor]="menu" class="font-size-16">Username</button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item *ngFor="let item of menuItems">
-        <div (click)="route(item.url)">{{item.name}}</div>
-      </button>
-    </mat-menu>
-  </div>
-
-
-</mat-toolbar> -->
-<!-- <app-navbar></app-navbar> -->
-<!-- <app-sign-up></app-sign-up> -->
 <router-outlet></router-outlet>

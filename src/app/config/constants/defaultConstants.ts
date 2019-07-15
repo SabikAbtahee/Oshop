@@ -15,7 +15,7 @@ export const defaultConst = {
 	],
 	menu: {
 		profile: {
-			name: 'Profile',
+			name: 'My Profile',
 			url: 'profile'
 		},
 		logout: {

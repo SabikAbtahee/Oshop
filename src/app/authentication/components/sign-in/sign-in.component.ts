@@ -38,15 +38,18 @@ export class SignInComponent implements OnInit {
 	}
 
 	onSubmit() {
-		this.isLoading = true;
-		this.userInformation = {
-			email: this.signinform.value.email,
-			password: this.signinform.value.password
-		};
-		// setTimeout(()=>{
-		// 	this.signinUser(this.userInformation);
-		// }, 4000);
-		this.signinUser(this.userInformation);
+		if(this.signinform.valid){
+			this.isLoading = true;
+			this.userInformation = {
+				email: this.signinform.value.email,
+				password: this.signinform.value.password
+			};
+			// setTimeout(()=>{
+			// 	this.signinUser(this.userInformation);
+			// }, 4000);
+			this.signinUser(this.userInformation);
+		}
+		
 	}
 
 	signinUser(user: UserInformation) {

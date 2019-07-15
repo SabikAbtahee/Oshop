@@ -24,9 +24,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
 	defaultCountryOfPhoneNumber = defaultConst.defaultPhonenumberCode;
 	errormessages = errorMessages;
 	_unsubscribeAll: Subject<any>;
-	verificationEmailsent=defaultConst.checkEmail;
+	verificationEmailsent = defaultConst.checkEmail;
 	matcher;
-	isLoading:boolean=false;
+	isLoading: boolean = false;
 	constructor(
 		private authenticationService: AuthenticationService,
 		private fb: FormBuilder,
@@ -53,6 +53,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 			shopAddress: [ '' ]
 		});
 	}
+
 	passwordMatchValidator(group: FormGroup): any {
 		if (group) {
 			if (group.get('password').value !== group.get('confirmpassword').value) {
@@ -64,27 +65,32 @@ export class SignUpComponent implements OnInit, OnDestroy {
 	}
 
 	setCustomValidation() {
+		this.signupform.setValidators(this.passwordMatchValidator);
+		this.signupform.updateValueAndValidity();
 		this.matcher = new ErrorStateMatcherForsignUppage();
 	}
 
 	onSubmit() {
-		this.isLoading=true;
-		this.userInformation = {
-			email: this.signupform.value.email,
-			password: this.signupform.value.password,
-			displayName: this.signupform.value.name,
-			metaData: {
-				name: this.signupform.value.name,
+		if(this.signupform.valid){
+			this.isLoading = true;
+			this.userInformation = {
 				email: this.signupform.value.email,
-				role: [ ...this.signupform.value.role ],
-				phoneNumber: this.signupform.value.phoneNumber,
-				homeAddress: this.signupform.value.homeAddress,
-				shopAddress: this.signupform.value.shopAddress,
-				enquiryLimit: defaultConst.defaultEnquiryLimit,
-				ratings: defaultConst.defaultRatings
-			}
-		};
-		this.registerUser(this.userInformation);
+				password: this.signupform.value.password,
+				displayName: this.signupform.value.name,
+				metaData: {
+					name: this.signupform.value.name,
+					email: this.signupform.value.email,
+					role: [ ...this.signupform.value.role ],
+					phoneNumber: this.signupform.value.phoneNumber,
+					homeAddress: this.signupform.value.homeAddress,
+					shopAddress: this.signupform.value.shopAddress,
+					enquiryLimit: defaultConst.defaultEnquiryLimit,
+					ratings: defaultConst.defaultRatings
+				}
+			};
+			this.registerUser(this.userInformation);
+		}
+		
 	}
 
 	registerUser(user: UserInformation) {
@@ -99,13 +105,13 @@ export class SignUpComponent implements OnInit, OnDestroy {
 				this.openVerificationBar();
 				this.routeToHome();
 			}
-			this.isLoading=false;
+			this.isLoading = false;
 		});
 	}
 
 	openVerificationBar() {
 		this.sharedService.openSnackBar({
-			data: { message:this.verificationEmailsent, isAccepted: true },
+			data: { message: this.verificationEmailsent, isAccepted: true },
 			duration: 6,
 			panelClass: [ 'default-snackbar' ],
 			horizontalPosition: 'right',

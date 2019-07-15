@@ -89,5 +89,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
 		})
 	}
 
-	ngOnDestroy() {}
+	ngOnDestroy() {
+		
+	}
+	route(url) {
+		this.router.navigateByUrl(url);
+	}
 }

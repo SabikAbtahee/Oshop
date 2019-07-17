@@ -4,8 +4,9 @@ import { UserInformation } from '../../../config/interfaces/user.interface';
 import { ProfileService } from '../../services/profile.service';
 import { first } from 'rxjs/operators';
 import { passwordRegex } from '../../../config/constants/defaultConstants';
-import { ErrorStateMatcherForsignUppage } from '../../../core/utility-service/utility.service';
+import { ErrorStateMatcherForsignUppage, UtilityService } from '../../../core/utility-service/utility.service';
 import { errorMessages } from '../../../config/validators/errormessages.constants';
+import * as _ from 'lodash';
 
 @Component({
 	selector: 'app-password-change',
@@ -17,11 +18,12 @@ export class PasswordChangeComponent implements OnInit {
 	passwordgroup: any = {};
 	matcher;
 	errormessages = errorMessages;
-	constructor(private fb: FormBuilder, private profileservice: ProfileService) {}
+	constructor(private fb: FormBuilder, private profileservice: ProfileService,private util:UtilityService) {}
 
 	ngOnInit() {
 		this.makePasswordChangeForm();
 		this.setCustomValidation();
+		// this.getProfileInformation();
 	}
 
 	makePasswordChangeForm() {
@@ -35,8 +37,18 @@ export class PasswordChangeComponent implements OnInit {
 	onSubmit() {
 		if (this.changePasswordForm.valid) {
 			this.setPassword();
-			this.getCredentialWithEmail(this.passwordgroup);
+			this.updatePassword(this.passwordgroup);
 		}
+		else{
+			this.updateFields();
+		}
+	}
+
+	updateFields(){
+		let fields=this.util.getFormControlsValueFromFormGroup(this.changePasswordForm);
+		_.forEach(fields, (value, key) => {
+			this.changePasswordForm.controls[value].markAsTouched();
+		});
 	}
 
 	setPassword() {
@@ -58,17 +70,12 @@ export class PasswordChangeComponent implements OnInit {
 		this.changePasswordForm.setValidators(this.passwordMatchValidator);
 		this.changePasswordForm.updateValueAndValidity();
 		this.matcher = new ErrorStateMatcherForsignUppage();
-		this.x();
+		
 	}
 
-	x() {
-		this.changePasswordForm.valueChanges.subscribe((res) => {
-			console.log(res);
-			console.log(this.changePasswordForm);
-		});
-	}
+	
 
-	getCredentialWithEmail(passwords) {
+	updatePassword(passwords) {
 		this.profileservice
 			.updatePassword(passwords.oldpassword, passwords.confirmpassword)
 			.pipe(first())
@@ -76,4 +83,6 @@ export class PasswordChangeComponent implements OnInit {
 				console.log(res);
 			});
 	}
+
+	
 }

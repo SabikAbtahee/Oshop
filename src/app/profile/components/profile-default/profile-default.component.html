@@ -1,5 +1,19 @@
-<!-- <p>
-  profile-default works!
-</p> -->
+
+<form [formGroup]="profileform">
+    <input type="text" matInput placeholder="Type in name " formControlName="name">
+
+    <international-phone-number formControlName="phoneNumber" placeholder="Enter phone number"
+        >
+    </international-phone-number>
+
+    <mat-select formControlName='role' multiple disableOptionCentering>
+        <mat-option *ngFor='let role of roles | keyvalue' [value]='role.key'>{{role.value}}</mat-option>
+    </mat-select>
+
+    <input type="text" matInput placeholder="Type in home address " formControlName="homeAddress">
+
+    <input type="text" matInput placeholder="Type in Shop Address " formControlName="shopAddress">
+    <button type="submit" (click)='onSubmit()' mat-raised-button color="primary" class="w-240 h-40">Save</button>
+</form>
 
 <app-password-change></app-password-change>

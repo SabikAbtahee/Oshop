@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { SnackbarComponent } from '../components/snackbar/snackbar.component';
 import { snackbar } from '../../config/interfaces/config.interface';
+import { BehaviorSubject } from 'rxjs';
+// import { PasswordChangeComponent } from 'src/app/profile/components/password-change/password-change.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
 
-  constructor(private snackbar: MatSnackBar) { }
+  Username = new BehaviorSubject('');
+  $username= this.Username.asObservable();
+  menuIndex = new BehaviorSubject<number>(1);
+  $menuIndex = this.menuIndex.asObservable();
+  constructor(private snackbar: MatSnackBar,public dialog: MatDialog) { }
 
   openSnackBar(configuration:snackbar) {
 		this.snackbar.openFromComponent(SnackbarComponent, {
@@ -19,5 +25,7 @@ export class SharedService {
       panelClass:configuration.panelClass?configuration.panelClass:null ,
       
 		});
-	  }
+    }
+    
+    
 }

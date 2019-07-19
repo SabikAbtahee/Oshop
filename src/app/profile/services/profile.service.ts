@@ -10,29 +10,42 @@ import { defaultConst } from 'src/app/config/constants/defaultConstants';
 import { Entities } from 'src/app/config/enums/default.enum';
 import { ObserversModule } from '@angular/cdk/observers';
 import { MutationDatabaseService } from 'src/app/core/database-service/mutation-database.service';
+import { MatDialog } from '@angular/material';
+import { PasswordChangeComponent } from '../components/password-change/password-change.component';
+import { FormGroup } from '@angular/forms';
+import { UtilityService } from 'src/app/core/utility-service/utility.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 @Injectable({
 	providedIn: 'root'
 })
 export class ProfileService {
-	constructor(private afauth: AngularFireAuth, private query: QueryDatabaseService,private mutate:MutationDatabaseService) {}
+	constructor(
+		private afauth: AngularFireAuth,
+		private query: QueryDatabaseService,
+		private mutate: MutationDatabaseService,
+		private util: UtilityService,
+		private sharedService: SharedService
+	) {}
 
-	updatePassword(oldpassword: string, newpassword: string): Observable<any> {
-		return new Observable((observer) => {
-			const currentEmail = this.afauth.auth.currentUser.email;
-			this.afauth.auth
-				.signInWithEmailAndPassword(currentEmail, oldpassword)
-				.then((res) => {
-					if (res && res.user && res.user.emailVerified) {
-						this.afauth.auth.currentUser.updatePassword(newpassword);
-						observer.next(errorMessages.password_updated);
-					} else {
-						observer.next(errorMessages.verify_email);
-					}
-				})
-				.catch((err) => {
-					observer.next(err && err.code);
-				});
-		});
+	updatePassword(oldpassword: string, newpassword: string) {
+		const currentEmail = this.afauth.auth.currentUser.email;
+		this.afauth.auth
+			.signInWithEmailAndPassword(currentEmail, oldpassword)
+			.then((res) => {
+				if (res && res.user && res.user.emailVerified) {
+					this.afauth.auth.currentUser.updatePassword(newpassword);
+					// observer.next(errorMessages.password_updated);
+					this.openUpdatedSnackBar();
+				} else {
+					// observer.next(errorMessages.verify_email);
+					this.openErrorSnackBar('Verify Email');
+					this.util.resendVerificationEmail();
+				}
+			})
+			.catch((err) => {
+				this.openErrorSnackBar('Failed. Wrong credential');
+				// observer.next(err && err.code);
+			});
 	}
 
 	getProfileInformation(): Observable<any> {
@@ -53,7 +66,40 @@ export class ProfileService {
 		});
 	}
 
-	updateProfileInformation(entity,id,data){
-		this.mutate.updateSingleData(entity,id,data);
+	updateProfileInformation(entity, id, data) {
+		this.mutate.updateSingleData(entity, id, data).pipe(first()).subscribe((response) => {
+			if (response == errorMessages.updated) {
+				this.openUpdatedSnackBar();
+				debugger;
+				if (data && data.name) {
+					this.sharedService.Username.next(data.name);
+				}
+			} else {
+				this.openErrorSnackBar();
+			}
+		});
+	}
+
+	touchAllfields(formgroup: FormGroup) {
+		this.util.touchAllFieldsOfForm(formgroup);
+	}
+
+	openUpdatedSnackBar() {
+		this.sharedService.openSnackBar({
+			data: { message: errorMessages.updated, isAccepted: true },
+			duration: 2,
+			panelClass: [ 'default-snackbar' ],
+			horizontalPosition: 'right',
+			verticalPosition: 'top'
+		});
+	}
+	openErrorSnackBar(message?: string) {
+		this.sharedService.openSnackBar({
+			data: { message: message ? message : errorMessages.error, isAccepted: false },
+			duration: 2,
+			panelClass: [ 'default-snackbar' ],
+			horizontalPosition: 'right',
+			verticalPosition: 'top'
+		});
 	}
 }

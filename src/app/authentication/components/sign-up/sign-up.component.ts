@@ -90,6 +90,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
 			};
 			this.registerUser(this.userInformation);
 		}
+		else{
+			this.authenticationService.touchAllfields(this.signupform);
+		}
 		
 	}
 

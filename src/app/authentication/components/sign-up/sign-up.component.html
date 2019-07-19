@@ -127,6 +127,8 @@
                 <international-phone-number formControlName="phoneNumber" placeholder="Enter phone number"
                   [defaultCountry]=defaultCountryOfPhoneNumber>
                 </international-phone-number>
+                <mat-error *ngIf="signupform.get('phoneNumber').touched && signupform.get('phoneNumber').invalid">{{errormessages.phonenumber_invalid}}</mat-error>
+
               </div>
             </div>
 

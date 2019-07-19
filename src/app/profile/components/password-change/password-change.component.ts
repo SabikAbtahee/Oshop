@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserInformation } from '../../../config/interfaces/user.interface';
 import { ProfileService } from '../../services/profile.service';
@@ -7,6 +7,7 @@ import { passwordRegex } from '../../../config/constants/defaultConstants';
 import { ErrorStateMatcherForsignUppage, UtilityService } from '../../../core/utility-service/utility.service';
 import { errorMessages } from '../../../config/validators/errormessages.constants';
 import * as _ from 'lodash';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
 	selector: 'app-password-change',
@@ -18,7 +19,11 @@ export class PasswordChangeComponent implements OnInit {
 	passwordgroup: any = {};
 	matcher;
 	errormessages = errorMessages;
-	constructor(private fb: FormBuilder, private profileservice: ProfileService,private util:UtilityService) {}
+	constructor(
+		private fb: FormBuilder,
+		private profileservice: ProfileService,
+		public dialogRef: MatDialogRef<PasswordChangeComponent>
+	) {}
 
 	ngOnInit() {
 		this.makePasswordChangeForm();
@@ -38,17 +43,13 @@ export class PasswordChangeComponent implements OnInit {
 		if (this.changePasswordForm.valid) {
 			this.setPassword();
 			this.updatePassword(this.passwordgroup);
-		}
-		else{
+		} else {
 			this.updateFields();
 		}
 	}
 
-	updateFields(){
-		let fields=this.util.getFormControlsValueFromFormGroup(this.changePasswordForm);
-		_.forEach(fields, (value, key) => {
-			this.changePasswordForm.controls[value].markAsTouched();
-		});
+	updateFields() {
+		this.profileservice.touchAllfields(this.changePasswordForm);
 	}
 
 	setPassword() {
@@ -70,19 +71,13 @@ export class PasswordChangeComponent implements OnInit {
 		this.changePasswordForm.setValidators(this.passwordMatchValidator);
 		this.changePasswordForm.updateValueAndValidity();
 		this.matcher = new ErrorStateMatcherForsignUppage();
-		
 	}
-
-	
 
 	updatePassword(passwords) {
-		this.profileservice
-			.updatePassword(passwords.oldpassword, passwords.confirmpassword)
-			.pipe(first())
-			.subscribe((res) => {
-				console.log(res);
-			});
+		this.profileservice.updatePassword(passwords.oldpassword, passwords.confirmpassword);
 	}
 
-	
+	onNoClick(): void {
+		this.dialogRef.close();
+	}
 }

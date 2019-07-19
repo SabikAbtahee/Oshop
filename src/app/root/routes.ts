@@ -12,39 +12,53 @@ export const routes: Routes = [
 		pathMatch: 'full'
 	},
 	{
-		path:'',
-		component:NavbarComponent,
-		children:[
+		path: '',
+		component: NavbarComponent,
+		children: [
 			{
 				path: 'shopping-cart',
 				loadChildren: '../shopping-cart/shopping-cart.module#ShoppingCartModule',
-				canActivate:[AuthguardService]
+				canActivate: [ AuthguardService ]
 			},
 			{
 				path: 'profile',
 				loadChildren: '../profile/profile.module#ProfileModule',
-				canActivate:[AuthguardService]
-
+				canActivate: [ AuthguardService ]
 			},
 			{
 				path: 'product',
 				loadChildren: '../product/product.module#ProductModule',
-				canActivate:[AuthguardService]
-
+				canActivate: [ AuthguardService ]
 			},
 			{
 				path: 'enquiry',
 				loadChildren: '../enquiry/enquiry.module#EnquiryModule',
+				canActivate: [ AuthguardService ]
+			},
+			{
+				path: 'admin',
+				loadChildren: '../admin/admin.module#AdminModule',
+				canActivate:[AuthguardService]
+
+			},
+			{
+				path: 'category',
+				loadChildren: '../category/category.module#CategoryModule',
+				canActivate:[AuthguardService]
+
+			},
+			{
+				path: 'purchase',
+				loadChildren: '../purchase/purchase.module#PurchaseModule',
 				canActivate:[AuthguardService]
 
 			}
-
 		]
 	},
 	{
-		path:'',
-		component:AnonymousComponent,
-		children:[
+		path: '',
+		component: AnonymousComponent,
+		children: [
 			{
 				path: 'authentication',
 				loadChildren: '../authentication/authentication.module#AuthenticationModule'
@@ -52,8 +66,7 @@ export const routes: Routes = [
 		]
 	},
 	{
-		path:'**',
-		component:NotFoundComponent
+		path: '**',
+		component: NotFoundComponent
 	}
-	
 ];

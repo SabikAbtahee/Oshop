@@ -6,11 +6,13 @@ import { UserInformation, CustomerUserInformation } from '../../config/interface
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Entities } from '../../config/enums/default.enum';
+import { UtilityService } from 'src/app/core/utility-service/utility.service';
+import { FormGroup } from '@angular/forms';
 @Injectable({
 	providedIn: 'root'
 })
 export class AuthenticationService {
-	constructor(private angularfireauth: AngularFireAuth, private angularfirestore: AngularFirestore) {}
+	constructor(private angularfireauth: AngularFireAuth, private angularfirestore: AngularFirestore,private util:UtilityService) {}
 
 	signUp(user: UserInformation): Observable<any> {
 		return new Observable((observer) => {
@@ -67,5 +69,9 @@ export class AuthenticationService {
 			});
 		});
 
+	}
+
+	touchAllfields(group:FormGroup){
+		this.util.touchAllFieldsOfForm(group);
 	}
 }

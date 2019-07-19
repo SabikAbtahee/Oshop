@@ -7,6 +7,8 @@ import { CustomerUserInformation } from '../../../config/interfaces/user.interfa
 import { RolesView, Entities } from 'src/app/config/enums/default.enum';
 import { defaultConst } from 'src/app/config/constants/defaultConstants';
 import { errorMessages } from 'src/app/config/validators/errormessages.constants';
+import { SharedService } from 'src/app/shared/services/shared.service';
+import { PasswordModalService } from '../../services/password-modal.service';
 
 @Component({
 	selector: 'app-profile-default',
@@ -21,7 +23,11 @@ export class ProfileDefaultComponent implements OnInit, OnDestroy {
 	errormessages = errorMessages;
 	_unsubscribeall: Subject<any>;
 
-	constructor(private fb: FormBuilder, private profileService: ProfileService) {
+	constructor(
+		private fb: FormBuilder,
+		private profileService: ProfileService,
+		private passwordmodal: PasswordModalService
+	) {
 		this._unsubscribeall = new Subject();
 	}
 
@@ -70,9 +76,17 @@ export class ProfileDefaultComponent implements OnInit, OnDestroy {
 			this.user.shopAddress = this.profileform.value.shopAddress;
 			this.profileService.updateProfileInformation(Entities.Person, this.user.uid, this.user);
 		} else {
-			console.log('error');
+			this.updateForm();
 		}
 	}
+	openChangePasswordModal() {
+		this.passwordmodal.openPasswordChangeModal();
+	}
+
+	updateForm() {
+		this.profileService.touchAllfields(this.profileform);
+	}
+
 	ngOnDestroy() {
 		this._unsubscribeall.next();
 		this._unsubscribeall.complete();

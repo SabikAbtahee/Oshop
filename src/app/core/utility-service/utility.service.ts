@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { FormGroup, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
+import { AngularFireAuth } from '@angular/fire/auth';
 @Injectable({
 	providedIn: 'root'
 })
 export class UtilityService {
-	constructor() {}
+	constructor(private angularfireauth:AngularFireAuth) {}
 
 	getFormControlsValueFromFormGroup(fg: FormGroup) {
 		let controls = [];
@@ -15,6 +16,19 @@ export class UtilityService {
 			controls = [ ...controls, value ];
 		});
 		return controls;
+	}
+
+
+	touchAllFieldsOfForm(formgroup:FormGroup){
+		let fields=this.getFormControlsValueFromFormGroup(formgroup);
+		_.forEach(fields, (value, key) => {
+			formgroup.controls[value].markAsTouched();
+		});
+	}
+
+	resendVerificationEmail(){
+		this.angularfireauth.auth.currentUser.sendEmailVerification();
+
 	}
 }
 

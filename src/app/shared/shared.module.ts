@@ -13,6 +13,8 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { SharedService } from './services/shared.service';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 @NgModule({
   declarations: [SnackbarComponent],
   imports: [
@@ -33,7 +35,9 @@ import { SharedService } from './services/shared.service';
     AngularFontAwesomeModule,
     MatDividerModule,
     MatProgressBarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule,
+    MatButtonToggleModule
   ],
   exports:[
     MatToolbarModule,
@@ -52,7 +56,9 @@ import { SharedService } from './services/shared.service';
     AngularFontAwesomeModule,
     MatDividerModule,
     MatProgressBarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule,
+    MatButtonToggleModule
   ],
   providers:[SharedService],
   entryComponents:[SnackbarComponent]

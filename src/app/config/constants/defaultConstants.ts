@@ -1,17 +1,35 @@
 export const defaultConst = {
 	sidebar: [
 		{
-			name: 'Shopping Cart',
-			url: 'shopping-cart'
+			name: 'Admin Panel',
+			url: 'admin',
+			icon:'security'
 		},
 		{
 			name: 'Product',
-			url: 'product'
+			url: 'product',
+			icon:'weekend'
 		},
 		{
 			name: 'Enquiry',
-			url: 'enquiry'
-		}
+			url: 'enquiry',
+			icon:'contact_support'
+		},
+		{
+			name: 'Category',
+			url: 'category',
+			icon:'widgets'
+		},
+		{
+			name: 'Purchase',
+			url: 'purchase',
+			icon:'shopping_cart'
+		},
+		// {
+		// 	name: 'Shopping Cart',
+		// 	url: 'shopping-cart',
+		// 	icon:'shopping_cart'
+		// },
 	],
 	menu: {
 		profile: {

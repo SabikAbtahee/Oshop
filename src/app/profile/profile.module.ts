@@ -4,20 +4,19 @@ import { ProfileDefaultComponent } from './components/profile-default/profile-de
 import { RouterModule, Routes } from '@angular/router';
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
 import { SharedModule } from '../shared/shared.module';
+import { ProfileService } from './services/profile.service';
+import { PasswordModalService } from './services/password-modal.service';
 
-
-const routes:Routes=[
-  {
-    path:'',
-    component:ProfileDefaultComponent
-  }
-]
+const routes: Routes = [
+	{
+		path: '',
+		component: ProfileDefaultComponent
+	}
+];
 @NgModule({
-  declarations: [ProfileDefaultComponent, PasswordChangeComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    SharedModule
-  ]
+	declarations: [ ProfileDefaultComponent, PasswordChangeComponent ],
+	imports: [ CommonModule, RouterModule.forChild(routes), SharedModule ],
+	providers: [ ProfileService, PasswordModalService ],
+	entryComponents: [ PasswordChangeComponent ]
 })
-export class ProfileModule { }
+export class ProfileModule {}

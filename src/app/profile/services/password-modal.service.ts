@@ -10,7 +10,7 @@ export class PasswordModalService {
 
 	openPasswordChangeModal(width?: string) {
 		const dialogRef = this.dialog.open(PasswordChangeComponent, {
-			width: width ? width : '25vw'
+			width: width ? width : '35vw'
 			// height:'60vh'
 		});
 

@@ -27,8 +27,8 @@
 
 
 <form [formGroup]="profileform">
-    <div fxLayout="column" fxLayoutAlign="center center">
-        <mat-card class='w-70-p p-48 m-56'>
+    <div fxLayout="column" fxLayoutAlign="center center" class='px-64'>
+        <mat-card    class='w-100-p p-48 m-56'>
             <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px" class="mb-48">
                 <div>
                     <img class="border-radius-50-p w-200 h-200" src="../../../../assets/images/profile_img_avatar.png"
@@ -99,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+            <div fxLayout="row" fxLayout.lt-md='column-reverse' fxLayoutAlign="end center" fxLayoutGap="16px">
                 <div>
                     <button (click)='openChangePasswordModal()' mat-stroked-button color="primary"
                         class="w-240 h-40">Change Password</button>

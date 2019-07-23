@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable, Subject, Subscription, observable } from 'rxjs';
+import { Observable, Subject, Subscription, observable, BehaviorSubject } from 'rxjs';
 import { map, takeUntil, first } from 'rxjs/operators';
 import { AuthenticationService } from '../../authentication/services/authentication.service';
 import { Router } from '@angular/router';
@@ -9,6 +9,8 @@ import { QueryDatabaseService } from '../../core/database-service/query-database
 import { Entities, Roles } from '../../config/enums/default.enum';
 import { CustomerUserInformation } from '../../config/interfaces/user.interface';
 import { SharedService } from '../../shared/services/shared.service';
+import { RootService } from '../services/root.service';
+import { SecurityService } from 'src/app/core/security-service/security.service';
 
 @Component({
 	selector: 'app-navbar',
@@ -23,16 +25,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
 	title: string;
 	sidebar;
 	Username: string;
-	$username: Observable<any>;
+	// $username: Observable<any>;
 	menuItems;
 	selectedRow: number;
 	_unsubscribeAll: Subject<any>;
+	
+    // $menuIndex = this.menuIndex.asObservable();
 	constructor(
 		private breakpointObserver: BreakpointObserver,
 		private aut: AuthenticationService,
 		private router: Router,
 		private corequery: QueryDatabaseService,
-		private sharedService: SharedService
+		private sharedService: SharedService,
+		private rootService: RootService,
+		private security:SecurityService
 	) {
 		this._unsubscribeAll = new Subject();
 	}
@@ -48,18 +54,30 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
 	initiateVariables() {
 		this.title = defaultConst.siteName.name;
-		this.sidebar = defaultConst.sidebar;
 		this.menuItems = defaultConst.menu;
 
-		this.sharedService.$username.subscribe((res) => {
-			this.$username = new Observable((obser) => {
-				obser.next(res);
-			});
+		this.makeSideBar();
+
+		this.rootService.$Username.subscribe((res) => {
+			this.Username=res;
 		});
 
-		this.sharedService.menuIndex.subscribe(res=>{
+		this.rootService.$menuIndex.subscribe(res=>{
 			this.selectedRow=res;
 		})
+	}
+
+	makeSideBar(){
+		this.security.isAdmin().pipe(first()).subscribe(res=>{
+			if(res){
+				this.sidebar = defaultConst.sidebar;
+			}
+			else{
+				this.sidebar=defaultConst.sidebarforcustomersupplier;
+			}
+		})
+		
+
 	}
 
 	setUsername() {
@@ -67,11 +85,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
 			if (res) {
 				this.getUserName(res).pipe(takeUntil(this._unsubscribeAll)).subscribe((res) => {
 					this.Username = res;
-					this.sharedService.Username.next(this.Username);
+					this.rootService.$Username.next(this.Username);
 				});
 			} else {
 				this.Username = Roles.Anonymous;
-				this.sharedService.Username.next(Roles.Anonymous);
+				this.rootService.$Username.next(Roles.Anonymous);
 			}
 		});
 	}
@@ -116,7 +134,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 	route(url) {
 		this.router.navigateByUrl(url);
 		if (url == defaultConst.menu.profile.url) {
-			this.sharedService.menuIndex.next(-1);
+			this.rootService.$menuIndex.next(-1);
 		}
 	}
 	selectRow(index) {

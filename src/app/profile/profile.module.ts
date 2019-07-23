@@ -6,16 +6,11 @@ import { PasswordChangeComponent } from './components/password-change/password-c
 import { SharedModule } from '../shared/shared.module';
 import { ProfileService } from './services/profile.service';
 import { PasswordModalService } from './services/password-modal.service';
+import { profileRoutes } from '../config/routes/lazyloadedRoutes.routes';
 
-const routes: Routes = [
-	{
-		path: '',
-		component: ProfileDefaultComponent
-	}
-];
 @NgModule({
 	declarations: [ ProfileDefaultComponent, PasswordChangeComponent ],
-	imports: [ CommonModule, RouterModule.forChild(routes), SharedModule ],
+	imports: [ CommonModule, RouterModule.forChild(profileRoutes), SharedModule ],
 	providers: [ ProfileService, PasswordModalService ],
 	entryComponents: [ PasswordChangeComponent ]
 })

@@ -10,10 +10,10 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SharedService {
 
-  Username = new BehaviorSubject('');
-  $username= this.Username.asObservable();
-  menuIndex = new BehaviorSubject<number>(1);
-  $menuIndex = this.menuIndex.asObservable();
+  // Username = new BehaviorSubject('');
+  // $username= this.Username.asObservable();
+  // menuIndex = new BehaviorSubject<number>(1);
+  // $menuIndex = this.menuIndex.asObservable();
   constructor(private snackbar: MatSnackBar,public dialog: MatDialog) { }
 
   openSnackBar(configuration:snackbar) {

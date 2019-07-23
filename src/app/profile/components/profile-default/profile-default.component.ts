@@ -42,7 +42,7 @@ export class ProfileDefaultComponent implements OnInit, OnDestroy {
 		this.profileform = this.fb.group({
 			name: [ '', Validators.required ],
 			phoneNumber: [ '' ],
-			role: [ '', Validators.required ],
+			// role: [ '', Validators.required ],
 			homeAddress: [ '' ],
 			shopAddress: [ '' ]
 		});
@@ -62,7 +62,7 @@ export class ProfileDefaultComponent implements OnInit, OnDestroy {
 	setProfileForm(user) {
 		this.profileform.controls.name.patchValue(user.name);
 		this.profileform.controls.phoneNumber.patchValue(user.phoneNumber);
-		this.profileform.controls.role.patchValue(user.role);
+		// this.profileform.controls.role.patchValue(user.role);
 		this.profileform.controls.homeAddress.patchValue(user.homeAddress);
 		this.profileform.controls.shopAddress.patchValue(user.shopAddress);
 	}
@@ -70,7 +70,7 @@ export class ProfileDefaultComponent implements OnInit, OnDestroy {
 	onSubmit() {
 		if (this.profileform.valid) {
 			this.user.name = this.profileform.value.name;
-			this.user.role = [ ...this.profileform.value.role ];
+			// this.user.role = [ ...this.profileform.value.role ];
 			this.user.phoneNumber = this.profileform.value.phoneNumber;
 			this.user.homeAddress = this.profileform.value.homeAddress;
 			this.user.shopAddress = this.profileform.value.shopAddress;

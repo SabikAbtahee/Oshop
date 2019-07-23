@@ -6,32 +6,14 @@ import { AccountRecoveryComponent } from './components/account-recovery/account-
 // import { SignOutComponent } from './components/sign-out/sign-out.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-
-const routes: Routes = [
-  {
-    path:'',
-    redirectTo:'sign-in'
-  },
-  {
-    path:'sign-in',
-    component:SignInComponent
-  },
-  {
-    path:'sign-up',
-    component:SignUpComponent
-  },
-  {
-    path:'account-recovery',
-    component:AccountRecoveryComponent
-  },
-];
+import { authenticationRoutes } from '../config/routes/lazyloadedRoutes.routes';
 
 
 @NgModule({
   declarations: [SignInComponent, SignUpComponent, AccountRecoveryComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(authenticationRoutes),
     SharedModule
   ]
 })

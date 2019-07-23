@@ -19,6 +19,10 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { AnonymousComponent } from './anonymous/anonymous.component';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { AuthguardService } from '../core/security-service/authguard.service';
+import { RootService } from './services/root.service';
+import { SharedService } from '../shared/services/shared.service';
+import { AdminguardGuard } from '../core/security-service/adminguard.guard';
+import { SecurityService } from '../core/security-service/security.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +50,7 @@ import { AuthguardService } from '../core/security-service/authguard.service';
     MatListModule
 
   ],
-  providers: [AuthguardService],
+  providers: [AuthguardService,AdminguardGuard,RootService,SharedService,SecurityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

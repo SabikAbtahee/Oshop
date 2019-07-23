@@ -1,4 +1,21 @@
 export const defaultConst = {
+	sidebarforcustomersupplier:[
+		{
+			name: 'Product',
+			url: 'product',
+			icon:'weekend'
+		},
+		{
+			name: 'Enquiry',
+			url: 'enquiry',
+			icon:'contact_support'
+		},
+		{
+			name: 'Purchase',
+			url: 'purchase',
+			icon:'shopping_cart'
+		},
+	],
 	sidebar: [
 		{
 			name: 'Admin Panel',

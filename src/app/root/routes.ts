@@ -4,6 +4,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireAuthGuard, loggedIn, canActivate } from '@angular/fire/auth-guard';
 import { AuthguardService } from '../core/security-service/authguard.service';
+import { AdminguardGuard } from '../core/security-service/adminguard.guard';
 
 export const routes: Routes = [
 	{
@@ -38,13 +39,13 @@ export const routes: Routes = [
 			{
 				path: 'admin',
 				loadChildren: '../admin/admin.module#AdminModule',
-				canActivate:[AuthguardService]
+				canActivate:[AuthguardService,AdminguardGuard]
 
 			},
 			{
 				path: 'category',
 				loadChildren: '../category/category.module#CategoryModule',
-				canActivate:[AuthguardService]
+				canActivate:[AuthguardService,AdminguardGuard]
 
 			},
 			{
@@ -61,7 +62,8 @@ export const routes: Routes = [
 		children: [
 			{
 				path: 'authentication',
-				loadChildren: '../authentication/authentication.module#AuthenticationModule'
+				loadChildren: '../authentication/authentication.module#AuthenticationModule',
+				
 			}
 		]
 	},

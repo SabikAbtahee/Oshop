@@ -6,24 +6,15 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AuthguardService } from '../core/security-service/authguard.service';
+import { shoppingcartRoutes } from '../config/routes/lazyloadedRoutes.routes';
 
 
-const routes:Routes=[
-  {
-    path:'',
-    component:ShoppingCartDefaultComponent
-  },
-  {
-    path:'order',
-    component:OrderSuccessComponent,
 
-  }
-]
 
 @NgModule({
   declarations: [ShoppingCartDefaultComponent, CheckoutComponent, OrderSuccessComponent, MyOrdersComponent],
   imports: [
-    RouterModule.forChild(routes),
+    RouterModule.forChild(shoppingcartRoutes),
     CommonModule
   ]
 })

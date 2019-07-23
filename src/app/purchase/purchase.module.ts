@@ -2,19 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PurchaseDefaultComponent } from './components/purchase-default/purchase-default.component';
 import { RouterModule, Routes } from '@angular/router';
+import { purchaseRoutes } from '../config/routes/lazyloadedRoutes.routes';
 
 
-const routes:Routes=[
-  {
-    path:'',
-    component:PurchaseDefaultComponent
-  }
-]
+
 @NgModule({
   declarations: [PurchaseDefaultComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(purchaseRoutes)
   ]
 })
 export class PurchaseModule { }

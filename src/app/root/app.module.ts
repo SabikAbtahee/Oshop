@@ -23,6 +23,7 @@ import { RootService } from './services/root.service';
 import { SharedService } from '../shared/services/shared.service';
 import { AdminguardGuard } from '../core/security-service/adminguard.guard';
 import { SecurityService } from '../core/security-service/security.service';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { SecurityService } from '../core/security-service/security.service';
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AngularFireAuthGuardModule,
+    AngularFireStorageModule ,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,

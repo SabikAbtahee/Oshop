@@ -87,6 +87,10 @@ export class ProfileDefaultComponent implements OnInit, OnDestroy {
 		this.profileService.touchAllfields(this.profileform);
 	}
 
+	uploadImage(){
+		console.log("Upload Image")
+	}
+
 	ngOnDestroy() {
 		this._unsubscribeall.next();
 		this._unsubscribeall.complete();

@@ -19,6 +19,7 @@ export interface CustomerUserInformation {
 	homeAddress?: Place;
 	shopAddress?: Place;
 	enquiryLimit?: number;
+	photoURL?:string;
 }
 
 export interface firebaseUserInformation {

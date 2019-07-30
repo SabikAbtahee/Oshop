@@ -15,8 +15,9 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { SharedService } from './services/shared.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { DropzoneDirective } from './directives/dropzone.directive';
 @NgModule({
-  declarations: [SnackbarComponent],
+  declarations: [SnackbarComponent, DropzoneDirective],
   imports: [
     MatToolbarModule,
     MatIconModule,

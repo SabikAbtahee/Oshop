@@ -28,3 +28,39 @@
         }
     }
 }
+
+.image-container{
+    position: relative;
+}
+.profile-image {
+    display: block;
+    width: 200px;
+    height: 200px;
+  }
+  
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+  }
+  
+  .image-container:hover .overlay {
+     
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+  .image-container:hover .profile-image{
+    opacity: 0.5;
+    background: rgb(150, 148, 145);
+  }

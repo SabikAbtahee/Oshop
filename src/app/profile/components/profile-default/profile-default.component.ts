@@ -88,7 +88,7 @@ export class ProfileDefaultComponent implements OnInit, OnDestroy {
 	}
 
 	uploadImage(){
-		console.log("Upload Image")
+		this.passwordmodal.openProfilePictureModal();
 	}
 
 	ngOnDestroy() {

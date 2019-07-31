@@ -16,6 +16,7 @@ import { FormGroup } from '@angular/forms';
 import { UtilityService } from 'src/app/core/utility-service/utility.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { RootService } from 'src/app/root/services/root.service';
+import { ProfilePictureUploadComponent } from '../components/profile-picture-upload/profile-picture-upload.component';
 @Injectable({
 	providedIn: 'root'
 })
@@ -26,7 +27,8 @@ export class ProfileService {
 		private mutate: MutationDatabaseService,
 		private util: UtilityService,
 		private sharedService: SharedService,
-		private rootService:RootService
+		private rootService:RootService,
+		public dialog: MatDialog
 	) {}
 
 	updatePassword(oldpassword: string, newpassword: string) {
@@ -105,4 +107,7 @@ export class ProfileService {
 			verticalPosition: 'top'
 		});
 	}
+
+
+	
 }
